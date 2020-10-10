@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx 
+spec:
+  maxReplicas: 5 #when load goes higher, the max number of replicas it goes upto 5
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx
+  targetCPUUtilizationPercentage: 20 #when cpu utilization goes upto 20 percent it triggeres the autoscaling
+  
+  
+  
