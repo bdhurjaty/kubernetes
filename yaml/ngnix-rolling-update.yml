@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    kubernetes.io/change-cause: "<Change-Cause>" 
   labels:
     run: nginx
   name: nginx-deploy
@@ -12,8 +14,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
+      maxSurge: 0 
+      maxUnavailable: 1 #it updates one pod at a time and makes it unavailable during update
   minReadySeconds: 5
   revisionHistoryLimit: 10
   template:
@@ -22,5 +24,5 @@ spec:
         run: nginx
     spec:
       containers:
-      - image: nginx:1.14
+      - image: nginx:1.14  #we give the update version here
         name: nginx
