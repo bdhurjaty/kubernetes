@@ -1,2 +1,0 @@
-# kubernetes
-My Notes
